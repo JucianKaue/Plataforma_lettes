@@ -76,3 +76,4 @@ def mysql_insert(sql, values):
 
 def mysql_select(sql):
     return mysql_connect().cursor(sql).execute(f"{sql}").fetchall()
+
