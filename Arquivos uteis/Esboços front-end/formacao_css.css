@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    border: none;
+}
+
+body {
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.5fr 1.8fr 0.5fr;
+    grid-template-rows: 15vh 75vh 15vh ;
+    grid-template-areas: 
+    ". titulo iconezin"
+    ". formacao_profissional ."
+    ". . ."
+    ;
+    font-family: 'Courier New', Courier, monospace;
+        /* Centro do Site. */
+    
+}
+
+#formacao_profissional {
+    grid-area: formacao_profissional;
+    text-align: center;
+    padding: 1vh;
+    border: 0.3rem solid white;
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+}
+
+#formacao_profissional > #nivel_ensino > h1 , #cursos> h1 , #complemento > h1 {
+    color: black;
+}
+
+#titulo > h1 {
+    color: black;
+}
+
+#formacao_profissional > #nivel_ensino > select {
+    background-color: white(109, 105, 105);
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+#nivel_ensino {
+    border: 0.2rem solid white;
+    background-color: white;
+    border-radius: 1rem;
+}
+
+#nivel_ensino > #formacao_prof {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 0.2rem solid white;
+    color: black;
+    cursor: pointer;
+    border-bottom: 0.2rem solid black;
+}
+
+#nivel_ensino > #formacao_prof > option,select {
+    color: black;
+}
+
+#cursos {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 0.2rem solid white;
+    border-radius: 1rem;
+    background-color: white;
+
+}
+
+#nivel_ensino > #enviar {
+    padding: 0.5rem;
+    border: 0.15rem solid white;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    color: black;
+
+}
+
+#formacao_profissional > #cursos > form > #cursos_input {
+    background-color: white;
+    color: black;
+    border: 0.2rem solid white;
+    border-radius: 0.3rem;
+    margin-bottom: 0.2rem;
+    border-bottom: 0.2rem solid black;
+
+}
+
+#formacao_profissional > #cursos >  form > #button_cursos {
+    font-size: 0.8rem;
+
+}
+
+#formacao_profissional > #cursos > form > #button_cursos {
+    background-color: white;
+    color: black;
+    border-radius: 0.5rem;
+    width: 2rem;
+
+}
+
+#formacao_profissional > #cursos > form > #button_cursos > ion-icon {
+    color: black;
+
+}
+
+#formacao_profissional > #cursos > #ionicon {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+#complemento {
+    border: 0.2rem solid white;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+#complemento > #complemento_textarea {
+    color: black;
+    width: 50rem;
+    height: 13rem;
+    margin-top: 1rem;
+    border-bottom: 0.2rem solid black;
+}
+
+#titulo {
+    grid-area: titulo;
+    text-align: center;
+    margin-top: 7vh;
+    color: black;
+
+}
+
+#iconezin {
+    grid-area: iconezin;
+    position: absolute;
+    top: 75px;
+    right: 75px;
+
+}
+
+#iconezin > ion-icon {
+    font-size: 3rem;
+    color: green;
+
+}
+
+ion-icon:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+
+ion-icon {
+    font-size: 1.2rem;
+}
+
+

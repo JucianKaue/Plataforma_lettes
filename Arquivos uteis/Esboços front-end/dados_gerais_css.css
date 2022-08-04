@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+    border: none;
+}
+
+body {
+
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1.0fr 1fr;
+    grid-template-rows: 18vh 64vh 18vh ;
+    grid-template-areas: 
+    ". titulo iconezin"
+    ". dados_gerais ."
+    ". . ."
+    ;
+    font-family: 'Courier New', Courier, monospace;
+        /* Centro do Site. */
+    
+}
+
+#dados_gerais {
+    grid-area: dados_gerais;
+    margin-top: 5vh;
+    border: 0.3rem solid white;
+    background-image: linear-gradient(lightblue, cyan, blue);
+    
+}
+
+#dados_gerais > #Nome, #CPF, #Telefone, #Email, #Resumo {
+    padding: 0.8rem;
+    margin: 0.2rem;
+    border: 0.3em solid white;
+    border-bottom: 0.3em solid gray;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+#dados_gerais > #Nome > input, #CPF > input, #Telefone > input, #Email > input, #Resumo > input {
+    width: 25rem;
+    margin-left: 2rem;
+    border-bottom: 0.3em solid black;
+}
+
+#dados_gerais > #Nome > button, #CPF > button, #Telefone > button, #Email > button, #Resumo > button {
+    padding: 0.7rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    color: white;
+    border-radius: 100%;
+    font-size: 1.3rem;
+    
+}
+
+#titulo {
+    grid-area: titulo;
+    text-align: center;
+    margin-top: 15vh;
+}
+
+
+#iconezin {
+    grid-area: iconezin;
+    position: absolute;
+    top: 75px;
+    right: 75px;
+}
+
+#iconezin > ion-icon {
+    grid-area: iconezin;
+    font-size: 3rem;
+    color: green;
+}
+
+ion-icon:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+
+
+

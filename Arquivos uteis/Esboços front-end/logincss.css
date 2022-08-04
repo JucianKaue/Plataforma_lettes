@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: black;
+    border: none;
+}
+
+body {
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    
+}
+
+
+#Logar {
+    background-color: white;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 30px;
+    margin-top: 10vh;
+    border-radius: 1.5rem;
+    text-align: center;
+
+}
+
+#form {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+label, input {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+input {
+    border-bottom: 2px solid black;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+button {
+    font-family: space;
+    font-size: 1rem;
+    border: none;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 10px;
+    border-radius: 1rem;
+    background-color: aquamarine;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background-color: rgb(81, 226, 252);
+}
+
+p {
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+#icon {
+    margin-top: 25px;
+    font-size: 30px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px ;
+    
+}

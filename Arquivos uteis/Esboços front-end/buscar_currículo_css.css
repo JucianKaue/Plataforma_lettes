@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: black;
+    border: none;
+}
+
+body {
+
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.4fr 1.8fr 0.4fr;
+    grid-template-rows: 15vh 70vh 15vh ;
+    grid-template-areas: 
+    ". . iconezin"
+    ". fazer_pesquisa ."
+    ". . ."
+    ;
+    font-family: 'Courier New', Courier, monospace;
+        /* Centro do Site. */
+    
+}
+
+#iconezin {
+    grid-area: iconezin;
+    position: absolute;
+    top: 75px;
+    right: 75px;
+
+}
+
+#iconezin > ion-icon {
+    font-size: 3rem;
+    color: green;
+
+}
+
+ion-icon:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+#fazer_pesquisa {
+    grid-area: fazer_pesquisa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    border-radius: 2rem;
+    padding: 1rem;
+    
+}
+
+form {
+    border: 2px solid white;
+    border-radius: 0.3em;
+    padding: 0.3em;
+
+}
+
+form input, form button {
+    font-size: 1.2em;
+    border-radius: 0.3em;
+    border: none;
+    padding: 0.2em;
+
+}
+
+form button {
+    cursor: pointer;
+    background: none;
+    color: white;
+}
+
+ion-icon {
+    font-size: 1.2rem;
+}
+
+

@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    display: border-box;
+    margin: 0;
+}
+
+body {
+
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr 0.5fr ;
+    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-areas: 
+    ". titulo iconezin"
+    ". atuacao ."
+    ". . . "
+    ;
+}
+
+#titulo {
+    grid-area: titulo;
+    text-align: center;
+    margin-top: 5vh;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+#atuacao {
+    grid-area: atuacao;
+    margin-top: 3vh;
+    border: 0.3rem solid white;
+    background-image: linear-gradient(to right,lightblue, cyan, blue);
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0.5rem;
+    
+}
+
+#area_atuacao, #emprego_atual, #trabalhos_anteriores  {
+    margin-bottom: 1rem;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 0.8rem;
+    border: 0.2rem solid white;
+    border-radius: 1rem;
+}
+
+#area_atuacao_select, #enviar{
+    padding: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    border: 0.2rem solid white;
+    border-bottom: 0.2rem solid black;
+    cursor: pointer;
+}
+
+#area_atuacao_select{
+    background-color: white;
+}
+
+#atuacao > #emprego_atual > form > #emprego_input {
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 0.2rem solid white;
+    border-bottom: 0.2rem solid black;
+}
+
+#atuacao > #emprego_atual > form >  #button_emprego {
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0.2rem solid white;
+}
+
+#iconezin {
+    grid-area: iconezin;
+    position: absolute;
+    top: 75px;
+    right: 75px;
+
+}
+
+#atuacao > #trabalhos_anteriores > ul > li {
+    margin-top: 1rem;
+    list-style: none;
+}
+
+#iconezin > ion-icon {
+    font-size: 3rem;
+    color: green;
+
+}
+
+ion-icon:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+

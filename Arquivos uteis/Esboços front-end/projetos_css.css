@@ -1,0 +1,99 @@
+
+* {
+    padding: 0;
+    display: border-box;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-image: linear-gradient(lightblue, cyan, blue);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr ;
+    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-areas: 
+    ". titulo iconezin"
+    ". projetos ."
+    ". . . "
+    ;
+}
+
+#titulo {
+    grid-area: titulo;
+    text-align: center;
+    margin-top: 8vh;
+
+}
+
+#formacao_profissional > #nivel_ensino > h1 , #cursos> h1 , #complemento > h1 {
+    color: black;
+}
+
+#titulo > h1 {
+    color: black;
+}
+
+#projetos {
+    grid-area:projetos;
+    background-image: linear-gradient(lightblue, cyan, blue);
+    margin-top: 5vh;
+    border: 0.3rem solid white;
+    
+}
+
+#projetos_andamento, #projetos_finalizados  {
+    font-size: 0.8rem;
+    padding: 2rem;
+    margin: 0.5rem;
+    text-align: center;
+    border: 0.3rem solid white;
+    background-color: white;
+}
+
+
+#projetos > #projetos_andamento > #projetos_andamento_input{
+    padding: 0.4rem;
+    margin-top: 1rem;
+    color: black;
+    background-color: white;
+    list-style: none;
+    border: 0.3rem solid white;
+    border-bottom: 0.3rem solid black;
+}
+
+#button_projetos_andamento {
+    padding: 0.4rem;
+    margin-top: 1rem;
+    color: black;
+    background-color: white;
+    list-style: none;
+    border: 0.3rem solid white;
+}
+
+#projetos > #projetos_finalizados > ul > li{
+    list-style: none;
+    margin-top: 1rem;
+}
+
+#iconezin {
+    grid-area: iconezin;
+    position: absolute;
+    top: 75px;
+    right: 75px;
+
+}
+
+#iconezin > ion-icon {
+    font-size: 3rem;
+    color: green;
+
+}
+
+ion-icon:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
