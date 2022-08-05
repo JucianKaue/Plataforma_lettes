@@ -1,5 +1,6 @@
 import mysql.connector
 
+database_padrao = 'mydb'
 
 class Curriculo:
     def __init__(self, id, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
@@ -13,6 +14,10 @@ class Curriculo:
         self._formacao = formacao
         self._atuacao = atuacao
         self._projetos = projetos
+
+    def get_curriculo(self, id):
+        result = mysql_select(f"SELECT * FROM mysql WHERE id = {id}")
+        print(result)
 
 
 class Users:
@@ -71,9 +76,43 @@ def mysql_command(sql):
 
 
 def mysql_insert(sql, values):
-    mysql_connect().cursor(sql).execute(f"{sql}", values)
+    db = mysql_connect()
+    c = db.cursor()
+    c.execute(f"USE {database_padrao}")
+    c.execute(sql, values)
+    db.commit()
+    return f"{c.rowcount} rows affected"
 
 
-def mysql_select(sql):
-    return mysql_connect().cursor(sql).execute(f"{sql}").fetchall()
+def mysql_select(table, data=dict):
+    k, v = '', ''
+    sql = f'INSERT INTO {table} ('
+    for key in data.keys():
+        k += f'{key}, '
+        v += f'{data[f"{key}"]}, '
+    sql += f"{k[:-2]}) VALUES ({v[:-2]});"
+
+    db = mysql_connect()
+    c = db.cursor()
+    c.execute(f'USE {database_padrao};')
+    c.execute(f"{sql}")
+    return c.fetchall()
+
+
+d = {
+    'idcurriculo': 'DEFAULT',
+    'nome': 'Leticia Priscila Perondi',
+    'CPF': '876.876.987-89',
+    'telefone': '49989237693',
+    'email': 'leti@gmail.com',
+    'resumo': 'VUCE ÉTÃO LINU',
+    'ultimaatualiacao': '2022-08-05'
+}
+
+mysql_insert('cadastro', d)
+
+
+
+
+
 

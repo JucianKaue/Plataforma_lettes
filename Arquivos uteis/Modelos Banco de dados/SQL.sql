@@ -8,7 +8,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- curriculoSchema mydb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Atuacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Atuacao` (
-  `idAtuacao` INT NOT NULL,
+  `idAtuacao` INT NOT NULL AUTO_INCREMENT,
   `area` VARCHAR(50) NOT NULL,
   `empregoatual` VARCHAR(45) NULL,
   `empregos` VARCHAR(45) NULL,
@@ -45,7 +45,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`projetosemandamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`projetosemandamento` (
-  `idprojetosemandamento` INT NOT NULL,
+  `idprojetosemandamento` INT NOT NULL AUTO_INCREMENT,
   `datainicio` DATE NOT NULL,
   PRIMARY KEY (`idprojetosemandamento`))
 ENGINE = InnoDB;
@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`projetosterminados`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`projetosterminados` (
-  `idprojetosterminados` INT NOT NULL,
+  `idprojetosterminados` INT NOT NULL AUTO_INCREMENT,
   `datainicio` DATE NOT NULL,
   `datatermino` DATE NOT NULL,
   PRIMARY KEY (`idprojetosterminados`))
@@ -66,7 +66,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`projetos_pessoas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`projetos_pessoas` (
-  `idprojetos` INT NOT NULL,
+  `idprojetos` INT NOT NULL AUTO_INCREMENT,
   `projetosemandamento` INT NOT NULL,
   `projetosterminados` INT NOT NULL,
   PRIMARY KEY (`idprojetos`),
@@ -89,16 +89,16 @@ ENGINE = InnoDB;
 -- Table `mydb`.`curriculo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`curriculo` (
-  `idcurriculo` INT NOT NULL,
+  `idcurriculo` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `CPF` VARCHAR(45) NOT NULL,
   `telefone` INT NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `resumo` VARCHAR(500) NOT NULL,
   `ultimaatualizacao` DATE NOT NULL,
-  `Formacao` INT NOT NULL,
-  `Atuacao` INT NOT NULL,
-  `Projetos` INT NOT NULL,
+  `Formacao` INT,
+  `Atuacao` INT,
+  `Projetos` INT,
   PRIMARY KEY (`idcurriculo`),
   UNIQUE INDEX `CPF_UNIQUE` (`CPF` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
@@ -127,7 +127,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`cursos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`cursos` (
-  `idcursos` INT NOT NULL,
+  `idcursos` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
   `cargahoraria` INT NOT NULL,
@@ -141,7 +141,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`formacao_has_cursos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`formacao_has_cursos` (
-  `formação_idformação` INT NOT NULL,
+  `formação_idformação` INT NOT NULL AUTO_INCREMENT,
   `cursos_idcursos` INT NOT NULL,
   PRIMARY KEY (`formação_idformação`, `cursos_idcursos`),
   INDEX `fk_formação_has_cursos_cursos1_idx` (`cursos_idcursos` ASC),
@@ -163,7 +163,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`empregosanteriores`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`empregosanteriores` (
-  `idempregosanteriores` INT NOT NULL,
+  `idempregosanteriores` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `Atuacao` INT NOT NULL,
   PRIMARY KEY (`idempregosanteriores`, `Atuacao`),
@@ -175,22 +175,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`empregosanteriores` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user` (
-  `username` VARCHAR(16) NOT NULL,
-  `email` VARCHAR(255) NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP);
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`projetos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`projetos` (
-  `idprojetos` INT NOT NULL,
+  `idprojetos` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
   `cargahoraria` VARCHAR(45) NOT NULL,
@@ -221,6 +210,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `password` VARCHAR(32) NOT NULL,
   `createdate` DATE NULL DEFAULT CURRENT_TIMESTAMP,
   `curriculo` INT NOT NULL,
+  PRIMARY KEY (`username`),
   INDEX `fk_users_curriculo1_idx` (`curriculo`),
   CONSTRAINT `fk_users_curriculo1`
     FOREIGN KEY (`curriculo`)
