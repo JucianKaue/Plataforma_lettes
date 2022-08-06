@@ -8,57 +8,46 @@
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='lattes.css') }}">
 </head>
 <body>
+    <header>
+        <img src ="logo.png" width="820px" height="85px">
+
+            <div id ="Top_icon">
+                <ion-icon name="help-outline"></ion-icon>
+                <ion-icon name="arrow-redo-circle-outline" onclick="window.location ='///C:/Users/User/Desktop/Lattes/login.html' " ></ion-icon>
+            </div>
+
+    <header>
+
     <div class="container">
         <div id ="main">
-            <img src = "foto.png" width="175px" height="175px" id="foto_perfil">
-            <h1 id ="nome_lattes"> {{ curriculo.nome }} </h1>
-            <p id = "id_lattes"> ID lettes: {{ curriculo.idcurrilo }} </p>
-            <p id = "atualizacao_lattes"> Última atualização: {{ curriculo.ultimaatualizacao }}</p>
+            <img src = "{{ url_for('static', filename='users_images/foto.png') }}" width="175px" height="175px" id="foto_perfil">
+            <h1 id ="nome_lattes"> {{ curriculo._nome }} </h1>
+            <p id = "id_lattes"> ID lettes: {{ curriculo._idcurriculo }} </p>
+            <p id = "atualizacao_lattes"> Última atualização: {{ curriculo._ultimaatualizacao }}</p>
 
             <div id = "resumo">
                 <h2> Resumo </h2>
-                <p id = "resumo_texto"> {{ curriculo.resumo }} </p>
+                <p id = "resumo_texto"> {{ curriculo._resumo }} </p>
             </div>
         </div>
 
         <div id ="menu">
-
             <ul id = "menuzin">
 
-                <li><a href="///C:/Users/User/Desktop/Lattes/dados_gerais.html"> Dados Gerais </a></li>
-                <li><a href="///C:/Users/User/Desktop/Lattes/formacao.html"> Formação </a></li>
-                <li><a href="///C:/Users/User/Desktop/Lattes/atuacao.html"> Atuação </a></li>
-                <li><a href="///C:/Users/User/Desktop/Lattes/projetos.html"> Projetos </a></li>
+                <li><a href=""> Dados Gerais </a></li>
+                <li><a href=""> Formação </a></li>
+                <li><a href=""> Atuação </a></li>
+                <li><a href=""> Projetos </a></li>
 
             </ul>
-
         </div>
 
-        <div id ="lado_esquerdo">
-
-        </div>
-
-        <div id ="lado_direito">
-
-        </div>
-
-        <footer>
-
-
-        </footer>
-
-        <header>
-            <img src ="logo.png" width="820px" height="85px">
-
-                <div id ="Top_icon">
-                    <ion-icon name="help-outline"></ion-icon>
-                    <ion-icon name="arrow-redo-circle-outline" onclick="window.location ='///C:/Users/User/Desktop/Lattes/login.html' " ></ion-icon>
-                </div>
-
-        <header>
-
-
+        <div id ="lado_esquerdo"></div>
+        <div id ="lado_direito"></div>
     </div>
+    <footer>
+
+    </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

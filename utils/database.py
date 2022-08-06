@@ -2,15 +2,17 @@ import mysql.connector
 
 database_padrao = 'mydb'
 
+
 class Curriculo:
-    def __init__(self, id, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
+    def __init__(self, id, url_img, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
         self._idcurriculo = id
+        self._imagem = url_img
         self._nome = nome
         self._cpf = CPF
         self._telefone = telefone
         self._email = email
         self._resumo = resumo
-        self._ultimatualizacao = ultimaatualizacao
+        self._ultimaatualizacao = ultimaatualizacao
         self._formacao = formacao
         self._atuacao = atuacao
         self._projetos = projetos
@@ -109,7 +111,7 @@ d = {
     'ultimaatualiacao': '2022-08-05'
 }
 
-mysql_insert('cadastro', d)
+#mysql_insert('cadastro', d)
 
 
 
