@@ -4,9 +4,9 @@ database_padrao = 'mydb'
 
 
 class Curriculo:
-    def __init__(self, id, url_img, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
-        self._idcurriculo = id
-        self._imagem = url_img
+    def __init__(self, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
+        self._idcurriculo = 'DEFAULT'
+        self._imagem = CPF
         self._nome = nome
         self._cpf = CPF
         self._telefone = telefone
@@ -38,7 +38,7 @@ class Formacao:
         self._complemento = complemento
 
 
-class Cursos:
+class Curso:
     def __init__(self, nome=str, descricao=str, cargahoraria=int, certificado=str, criador_curso=str):
         self._nome = nome
         self._descricao = descricao

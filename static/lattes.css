@@ -9,7 +9,7 @@ html, body {
 .container {
     display: grid;
     grid-template-columns: 0.4fr 1.8fr 0.4fr;
-    grid-template-rows: 20vh 5vh 65vh 10vh ;
+
     grid-template-areas: 
     "header header header"
     "menu menu menu"
@@ -31,7 +31,6 @@ html, body {
 
 #menuzin li {
     display: inline-block;
-
 }
 
 #menuzin li a{
@@ -40,8 +39,6 @@ html, body {
     color: white;
     padding: 10px;
     margin: 5vh;
-    
-
 }
 
 #menuzin li a:hover{
@@ -126,7 +123,7 @@ ion-icon {
     padding: 1rem;
 }
 
-#main > h1 {
+#main > h2 {
     grid-area: text;
     font-size: 3vh;
     font-family: Arial, Helvetica, sans-serif;
