@@ -32,11 +32,21 @@ c = Curriculo(
     ))
 
 
-@app.route('/curriculo/<id>')
+@app.route('/')
 def main():
-    get_
     return render_template('index.html', title='WELCOME', curriculo=c)
 
+
+@app.route('/adicionarcurriculo', methods=['GET', 'POST'])
+def AddCurriculo(request):
+    if request.method == 'GET':
+        return render_template('AddCurriculo.html', form_variaveis={
+            'niveis_ensino': mysql_select('__niveis_ensino'),
+            'areas_atuacao': mysql_select('__areas_atuacao')
+        })
+    elif request.method == 'POST':
+        nome = request['nome_input']
+        print(nome)
 
 
 if __name__ == '__main__':

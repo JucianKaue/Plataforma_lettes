@@ -21,7 +21,8 @@ class Curriculo:
     @staticmethod
     def get_curriculo_by_id(id):
         db_result = mysql_select('curriculo', filtros={'idcurriculo': f'{id}'})
-        
+
+        print(db_result)
 
 
 class Users:
@@ -127,3 +128,5 @@ def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
     return c.fetchall()
 
 
+
+#Curriculo.get_curriculo_by_id(7)

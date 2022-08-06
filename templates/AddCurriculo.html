@@ -1,0 +1,177 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title> Currículo Lattes</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{{ url_for("static", filename="AddCurriculo.css") }}'>
+</head>
+<body>
+
+    <header>
+        <h1> Altere seus Dados abaixo: </h1> 
+    <header>
+
+    <div class="container">
+        
+        <!-- Abre uma abra extra para fazer o cadastro, muito pica -->
+        <div  id="add_curso"  style="width: 554.92px; height: 350px; background-color: #2f3034; color: white; display: none; position: 
+        fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
+            <form id="cadastro_de_curso" style="padding: 1rem;">
+                <p id="subtitles"> Nome do Curso: </p>
+                    <label>&RightArrow;</label>
+                    <input id="nome_curso"></input> <br></br>
+                <p id="subtitles"> Participantes do Curso: </p>
+                    <label>&RightArrow;</label>
+                    <input id="participantes_curso"></input> <br></br>
+                <p id="subtitles"> Orientador do Curso: </p>
+                    <label>&RightArrow;</label>
+                    <input id="orientador_curso"></input> <br></br>
+                    <button type="button"> Enviar </button> 
+                <!-- Falta a função de enviar as alterações  -->
+                <button type="button" onclick="document.getElementById('add_curso').style.display='none' "> Sair </button>
+            </form>
+        </div>
+
+        <div  id="add_projeto"  style="width: 554.92px; height: 350px; background-color: #2f3034; color: white; display: none; position: 
+        fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
+            <form id="cadastro_de_projeto" style="padding: 1rem;">
+                <p id="subtitles"> Nome do Projeto: </p>
+                    <label>&RightArrow;</label>
+                    <input id="nome_projeto"></input> <br></br>
+                <p id="subtitles"> Participantes do Projeto: </p>
+                    <label>&RightArrow;</label>
+                    <input id="participantes_projeto"></input> <br></br>
+                <p id="subtitles"> Orientador do Projeto: </p>
+                    <label>&RightArrow;</label>
+                    <input id="orientador_Projeto"></input> <br></br>
+                <button type="button"> Enviar </button> 
+                <button type="button" onclick="document.getElementById('add_projeto').style.display='none' "> Sair </button>
+            </form>
+        </div>
+        
+        <div id ="main">
+            <form action="/" method="post">
+                <div id = "dados_gerais">
+                    <h2> Dados Gerais</h2>
+                    <div id="Nome">
+                        <p id="subtitles"> Nome: </p>
+                        <label>&RightArrow;</label>
+                        <input type="text" id="nome_input" placeholder="Nome">
+                    </div>
+        
+                    <div id="CPF">
+                        <p id="subtitles"> CPF: </p>
+                        <label>&RightArrow;</label>
+                        <input type="text" id="cpf_input" placeholder="CPF">
+                    </div>
+        
+                    <div id="Telefone">
+                        <p id="subtitles"> Telefone:</p>
+                        <label>&RightArrow;</label>
+                        <input type="text" id="telefone_input" placeholder="Telefone">
+                    </div>
+        
+                    <div id="Email">
+                        <p id="subtitles"> E-mail: </p>
+                        <label>&RightArrow;</label>
+                        <input type="text" id="email_input" placeholder="Email">
+                    </div>
+        
+                    <div id="Resumo">
+                        <p id="subtitles"> Resumo: </p>
+                        <label>&RightArrow;</label>
+                        <input type="text" id="resumo_input" placeholder= "Digite algo sobre você: ">
+                    </div>
+                </div>
+
+                <h2> Formação Acadêmica/Profissional </h2>
+                <div id = "formacao_profissional">
+
+                    <div id="nivel_ensino">
+                        <p id="subtitles"> Nível de Ensino: </p>
+                        <label>&RightArrow;</label>
+                        <select name="formacao_prof" id ="formacao_prof" value="Ensino Médio Incompleto">
+                            {% for nivel in form_variaveis['niveis_ensino'] %}
+                            <option value="{{ nivel[0] }} - {{ nivel[1] }}" >{{ nivel[0] }} - {{ nivel[1] }}</option>
+                            {% endfor %}                      
+                        </select>
+                    </div>
+        
+            
+                    <div id ="cursos">
+                        <p id="subtitles"> Cursos: </p>
+
+                        <form>
+                            <label>&RightArrow;</label>
+                            <button type="button" placeholder="Adicionar Curso" id="create_curso" onclick="document.getElementById('add_curso').style.display='block' "> Adicionar Curso </button>
+                        </form>
+        
+                    </div>
+        
+                    <div id="complemento">
+                        <p id="subtitles"> Complemento: </p>
+                        <textarea id="complemento_textarea" rows="1" cols="50"> Informações adicionais </textarea>
+                    </div>
+                </div>   
+
+                <h2> Projetos </h2>
+                <div id = "projetos">
+
+                    <div id="projetos_andamento">
+                        <p id="subtitles"> Projetos em Andamento </p>
+                        <label>&RightArrow;</label>
+                        <button type="button" placeholder="Adicionar Curso" id="create_projeto" onclick="document.getElementById('add_projeto').style.display='block' "> Adicionar Projeto </button>
+                    </div>
+        
+        
+                    <div id="projetos_finalizados">
+                        <p id="subtitles"> Projetos Finalizados</p>
+                        <!-- Colocar os "projetos_andamento" que já foram finalizados aqui. Se puder fazer u mfor e colocar esse ícone, HUMILDE: <label>&RightArrow;</label>  -->
+
+                    </div>
+                </div>
+
+                <h2> Atuação </h2>
+                <div id = "atuacao">
+
+                    <div id="area_atuacao">
+                        <p id="subtitles"> Área atual de atuação </p>
+                        <label>&RightArrow;</label>
+                        <select name="area_atuacao_select" id ="area_atuacao_select" value="Valorant">
+                            {% for area in form_variaveis['areas_atuacao'] %}
+                            <option value="{{ area[1] }}" > {{ area[1] }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+        
+                    <div id="emprego_atual">
+                        <p id="subtitles"> Emprego Atual</p>
+                        <form>
+                            <label>&RightArrow;</label>
+                            <input type="text" id="emprego_input" placeholder="Digite o seu emprego atual">
+                        </form>
+                    </div>
+        
+                    <div id="trabalhos_anteriores">
+                        <p id="subtitles"> Trabalhos Anteriores</p>
+                        <ul>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                        </ul>
+                        <!-- Colocar os "empregos_atuais" que já foram finalizados aqui. Se puder fazer u mfor e colocar esse ícone, HUMILDE: <label>&RightArrow;</label>  -->
+                    </div>
+
+                </div>
+                <button type="button" value="Send" id="Send"> Send Form </button>
+            </form>
+        </div>
+        <div id ="lado_esquerdo"></div>
+        <div id ="lado_direito"></div>
+    </div>
+    <footer>
+
+    </footer>
+</body>
+</html>
