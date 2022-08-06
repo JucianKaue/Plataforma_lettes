@@ -17,9 +17,9 @@
     <div id ="menu">
         <ul id = "menuzin">
             <li><a href=""> Dados Gerais </a></li>
-            <li><a href=""> Formação </a></li>
-            <li><a href=""> Atuação </a></li>
-            <li><a href=""> Projetos </a></li>
+            {% if curriculo._formacao != None %} <li><a href=""> Formação </a></li> {% endif %}
+            {% if curriculo._atuacao != None %}<li><a href=""> Atuação </a></li> {% endif %}
+            {% if curriculo._projetos != None %}<li><a href=""> Projetos </a></li> {% endif %}
         </ul>
     </div>
 
@@ -36,9 +36,11 @@
             </div>
         </div>
 
+        {% if curriculo._formacao != None %}
         <h3>Formação</h3>
             <h4>Nível de formação:</h4>
             <p>{{ curriculo._formacao._ensino }}</p>
+            {% if curriculo._formacao._cursos != None %}
             <h4>Curso:</h4>
                 <ul>
                     {% for curso in curriculo._formacao._cursos %}
@@ -49,27 +51,38 @@
                     </li>
                     {% endfor %}
                 </ul>
-            <h4>Complemento:</h4>
+            {% endif %}
+            {% if curriculo._formacao._complemento != None %}
+            <h4>Informações complementares:</h4>
             <p>{{ curriculo._formacao._complemento }}</p>
+            {% endif %}
+        {% endif %}
+        {% if curriculo._projetos != None %}
         <h3>Projetos</h3>
-        <h4>Projetos em andamento: </h4>
-            <ul>
-                {% for projeto in curriculo._projetos._projetosandamento %}
-                <li>
-                    <h4> {{ projeto._nome }} - {{ projeto._cargahoraria }} horas</h4>
-                    <p> {{ projeto._descricao }} </p>
-                </li>
-                {% endfor %}
-            </ul>
-        <h4>Projetos Finalizados: </h4>
-            <ul>
-                {% for projeto in curriculo._projetos._projetosterminados %}
-                <li>
-                    <h4> {{ projeto._nome }} - {{ projeto._cargahoraria }} horas</h4>
-                    <p> {{ projeto._descricao }} </p>
-                </li>
-                {% endfor %}
-            </ul>
+            {% if curriculo._projetos._projetosandamento != None %}
+            <h4>Projetos em andamento: </h4>
+                <ul>
+                    {% for projeto in curriculo._projetos._projetosandamento %}
+                    <li>
+                        <h4> {{ projeto._nome }} - {{ projeto._cargahoraria }} horas</h4>
+                        <p> {{ projeto._descricao }} </p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if curriculo._projetos._projetosterminados != None %}
+            <h4>Projetos Finalizados: </h4>
+                <ul>
+                    {% for projeto in curriculo._projetos._projetosterminados %}
+                    <li>
+                        <h4> {{ projeto._nome }} - {{ projeto._cargahoraria }} horas</h4>
+                        <p> {{ projeto._descricao }} </p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        {% if curriculo._atuacao != None %}
         <h3>Atuação</h3>
             <h4>Area de Atução: </h4>
             <p>{{ curriculo._atuacao._area }}</p>
@@ -81,6 +94,7 @@
                 <li> {{ emprego }} </li>
                 {% endfor %}
             </ul>
+        {% endif %}
             
     </div>
     <footer>

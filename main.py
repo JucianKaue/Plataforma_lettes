@@ -10,17 +10,7 @@ c = Curriculo(
     email='juciandecezare@hotmail.com',
     resumo='Hello, my name is Jucian',
     ultimaatualizacao='Today',
-    formacao=Formacao(
-        ensino='Ensino Médio Completo',
-        cursos=[Curso(
-            nome='HTML5',
-            descricao='Um curso de html 5',
-            cargahoraria=40,
-            certificado='oi',
-            criador_curso='Estudonauta'
-        )],
-        complemento='Nothing'
-    ),
+    formacao=None,
     atuacao=Atuacao(
         id=1,
         area='Ciencia da computaria',
@@ -42,13 +32,11 @@ c = Curriculo(
     ))
 
 
-@app.route('/')
+@app.route('/curriculo/<id>')
 def main():
-    return render_template(
-        'index.html',
-        title='WELCOME',
-        curriculo=c
-        )
+    get_
+    return render_template('index.html', title='WELCOME', curriculo=c)
+
 
 
 if __name__ == '__main__':

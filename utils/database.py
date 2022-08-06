@@ -17,9 +17,11 @@ class Curriculo:
         self._atuacao = atuacao
         self._projetos = projetos
 
-    def get_curriculo(self, id):
-        result = mysql_select(f"SELECT * FROM mysql WHERE id = {id}")
-        print(result)
+
+    @staticmethod
+    def get_curriculo_by_id(id):
+        db_result = mysql_select('curriculo', filtros={'idcurriculo': f'{id}'})
+        
 
 
 class Users:
@@ -74,10 +76,22 @@ def mysql_connect():
 
 
 def mysql_command(sql):
-    mysql_connect().cursor(sql).execute(f"{sql}")
+    db = mysql_connect()
+    c = db.cursor()
+    c.execute(f"USE {database_padrao}")
+    c.execute(f"{sql}")
+    return c.fetchall()
 
 
-def mysql_insert(sql, values):
+def mysql_insert(table, data):
+    k, v, values = '', '', []
+    sql = f'INSERT INTO {table} ('
+    for key in data.keys():
+        k += f'`{key}`, '
+        v += f'%s, '
+        values.append(f'{data[f"{key}"]}')
+    sql += f"{k[:-2]}) VALUES ({v[:-2]});"
+
     db = mysql_connect()
     c = db.cursor()
     c.execute(f"USE {database_padrao}")
@@ -86,35 +100,30 @@ def mysql_insert(sql, values):
     return f"{c.rowcount} rows affected"
 
 
-def mysql_select(table, data=dict):
-    k, v = '', ''
-    sql = f'INSERT INTO {table} ('
-    for key in data.keys():
-        k += f'{key}, '
-        v += f'{data[f"{key}"]}, '
-    sql += f"{k[:-2]}) VALUES ({v[:-2]});"
+def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
+    sql = "SELECT "
+    if len(columns) > 0:
+        for c in columns:
+            sql += f'{c}, '
+        sql = f"{sql[:-2]}"
+    else:
+        sql += '*'
+
+    sql += f" FROM {table}"
+    if len(filtros.keys()) > 0:
+        sql += ' WHERE '
+        for k in filtros.keys():
+            sql += F'{k} = {filtros[k]} AND '
+        sql = f"{sql[:-5]};"
+    else:
+        sql += ';'
+
+    print(sql)
 
     db = mysql_connect()
     c = db.cursor()
     c.execute(f'USE {database_padrao};')
     c.execute(f"{sql}")
     return c.fetchall()
-
-
-d = {
-    'idcurriculo': 'DEFAULT',
-    'nome': 'Leticia Priscila Perondi',
-    'CPF': '876.876.987-89',
-    'telefone': '49989237693',
-    'email': 'leti@gmail.com',
-    'resumo': 'VUCE ÉTÃO LINU',
-    'ultimaatualiacao': '2022-08-05'
-}
-
-#mysql_insert('cadastro', d)
-
-
-
-
 
 
