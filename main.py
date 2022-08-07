@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from utils.database import *
 
 app = Flask(__name__)
@@ -38,16 +38,22 @@ def main():
 
 
 @app.route('/adicionarcurriculo', methods=['GET', 'POST'])
-def AddCurriculo(request):
+def AddCurriculo():
     if request.method == 'GET':
         return render_template('AddCurriculo.html', form_variaveis={
             'niveis_ensino': mysql_select('__niveis_ensino'),
             'areas_atuacao': mysql_select('__areas_atuacao')
         })
     elif request.method == 'POST':
-        nome = request.form['input_nome']
-        print(nome)
-
+        form_projeto = "dict_keys(['nome_projeto', 'participantes_projeto', 'orientador_Projeto'])"
+        form_curso = "dict_keys(['nome_curso', 'descricao_curso', 'cargahoraria_curso', 'instituicao_curso', 'certificado_curso'])"
+        form_geral = ""
+        return f"{request.form.keys()}"
+        nome = request.form.get('nome')
+        cpf = request.form.get('CPF')
+        telefone = request.form.get('telefone')
+        email = request.form.get('email')
+        resumo = request.form.get('resumo')
 
 if __name__ == '__main__':
     app.run(debug=True)

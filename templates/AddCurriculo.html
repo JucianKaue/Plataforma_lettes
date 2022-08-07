@@ -15,76 +15,108 @@
     <div class="container">
         
         <!-- Abre uma abra extra para fazer o cadastro, muito pica -->
-        <div  id="add_curso"  style="width: 554.92px; height: 350px; background-color: #2f3034; color: white; display: none; position: 
+        <div  id="add_curso"  style="width: 554.92px; height: 500px; background-color: #2f3034; color: white; display: none; position: 
         fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
-            <form id="cadastro_de_curso" style="padding: 1rem;">
+            <form id="cadastro_de_curso" style="padding: 1rem;" method="post">
+                <h3 style="text-align: center;">Adicionar Curso</h3>
+
                 <p id="subtitles"> Nome do Curso: </p>
-                    <label>&RightArrow;</label>
-                    <input id="nome_curso"></input> <br></br>
-                <p id="subtitles"> Participantes do Curso: </p>
-                    <label>&RightArrow;</label>
-                    <input id="participantes_curso"></input> <br></br>
-                <p id="subtitles"> Orientador do Curso: </p>
-                    <label>&RightArrow;</label>
-                    <input id="orientador_curso"></input> <br></br>
-                    <button type="button"> Enviar </button> 
-                <!-- Falta a função de enviar as alterações  -->
+                <label>&RightArrow;</label>
+                <input id="nome_curso" name="nome_curso"></input> <br></br>
+            
+                <p id="subtitles"> Descrição do Curso: </p>
+                <label>&RightArrow;</label>
+                <input id="descricao_curso" name="descricao_curso"></input> <br></br>
+            
+                <p id="subtitles"> Carga Horaria do Curso: </p>
+                <label>&RightArrow;</label>
+                <input id="cargahoraria_curso" name="cargahoraria_curso"></input> <br></br>
+                
+                <p id="subtitles"> Instituição: </p>
+                <label>&RightArrow;</label>
+                <input id="instituicao_curso" name="instituicao_curso"></input> <br></br>
+
+                <p id="subtitles"> Certificado do Curso: </p>
+                <label>&RightArrow;</label>
+                <input id="descricao_curso" name="certificado_curso"></input> <br></br>
+
+                <button type="submit"> Enviar </button> 
                 <button type="button" onclick="document.getElementById('add_curso').style.display='none' "> Sair </button>
             </form>
         </div>
 
         <div  id="add_projeto"  style="width: 554.92px; height: 350px; background-color: #2f3034; color: white; display: none; position: 
         fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
-            <form id="cadastro_de_projeto" style="padding: 1rem;">
-                <p id="subtitles"> Nome do Projeto: </p>
-                    <label>&RightArrow;</label>
-                    <input id="nome_projeto"></input> <br></br>
-                <p id="subtitles"> Participantes do Projeto: </p>
-                    <label>&RightArrow;</label>
-                    <input id="participantes_projeto"></input> <br></br>
-                <p id="subtitles"> Orientador do Projeto: </p>
-                    <label>&RightArrow;</label>
-                    <input id="orientador_Projeto"></input> <br></br>
-                <button type="button"> Enviar </button> 
+            <form id="cadastro_de_projeto" style="padding: 1rem;" method="POST">
+                <h3 style="text-align: center;">Adicionar projeto</h3>
+
+                <p id="subtitles"> Nome: </p>
+                <label>&RightArrow;</label>
+                <input id="nome_projeto" name="nome_projeto"></input> <br></br>
+                
+                <p id="subtitles"> Descrição: </p>
+                <label>&RightArrow;</label>
+                <input id="descricao_projeto" name="descricao_projeto"></input> <br></br>
+                
+                <p id="subtitles"> Carga Horaria: </p>
+                <label>&RightArrow;</label>
+                <input id="cargahoraria_Projeto" name="cargahoraria_Projeto"></input> <br></br>
+                
+                <!-- 
+                    - Tenta colocar os bgl de data na mesma linha
+                    - Alterar o tipo de input deles para data
+                -->
+
+                <p id="subtitles"> Data Inicio: </p>
+                <label>&RightArrow;</label>
+                <input id="datainicio_Projeto" name="datainicio_Projeto"></input> <br></br>
+
+                <p id="subtitles"> Data Fim: </p>
+                <label>&RightArrow;</label>
+                <input id="datafim_Projeto" name="datafim_Projeto"></input> <br></br>
+
+                <button type="submit"> Enviar </button> 
                 <button type="button" onclick="document.getElementById('add_projeto').style.display='none' "> Sair </button>
             </form>
         </div>
         
         <div id ="main">
-            <form action="/" method="post">
+            <form method="post">
                 <div id = "dados_gerais">
                     <h2> Dados Gerais</h2>
                     <div id="Nome">
                         <p id="subtitles"> Nome: </p>
                         <label>&RightArrow;</label>
-                        <input type="text" id="nome_input" placeholder="Nome">
+                        <input type="text" id="nome_input" name="nome" placeholder="Nome">
                     </div>
         
                     <div id="CPF">
                         <p id="subtitles"> CPF: </p>
                         <label>&RightArrow;</label>
-                        <input type="text" id="cpf_input" placeholder="CPF">
+                        <input type="text" id="cpf_input" name="CPF" placeholder="CPF">
                     </div>
         
                     <div id="Telefone">
                         <p id="subtitles"> Telefone:</p>
                         <label>&RightArrow;</label>
-                        <input type="text" id="telefone_input" placeholder="Telefone">
+                        <input type="text" id="telefone_input" name="telefone" placeholder="Telefone">
                     </div>
         
                     <div id="Email">
                         <p id="subtitles"> E-mail: </p>
                         <label>&RightArrow;</label>
-                        <input type="text" id="email_input" placeholder="Email">
+                        <input type="text" id="email_input" name="email" placeholder="Email">
                     </div>
         
                     <div id="Resumo">
                         <p id="subtitles"> Resumo: </p>
                         <label>&RightArrow;</label>
-                        <input type="text" id="resumo_input" placeholder= "Digite algo sobre você: ">
+                        <input type="text" id="resumo_input" name="resumo" placeholder= "Digite algo sobre você: ">
                     </div>
                 </div>
 
+                <button type="submit"> Send Form </button>
+                </form>
                 <h2> Formação Acadêmica/Profissional </h2>
                 <div id = "formacao_profissional">
 
@@ -164,8 +196,8 @@
                     </div>
 
                 </div>
-                <button type="button" value="Send" id="Send"> Send Form </button>
-            </form>
+                
+            
         </div>
         <div id ="lado_esquerdo"></div>
         <div id ="lado_direito"></div>
