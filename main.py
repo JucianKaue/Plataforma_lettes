@@ -45,7 +45,7 @@ def AddCurriculo(request):
             'areas_atuacao': mysql_select('__areas_atuacao')
         })
     elif request.method == 'POST':
-        nome = request['nome_input']
+        nome = request.form['input_nome']
         print(nome)
 
 
