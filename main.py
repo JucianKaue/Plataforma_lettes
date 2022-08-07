@@ -45,15 +45,50 @@ def AddCurriculo():
             'areas_atuacao': mysql_select('__areas_atuacao')
         })
     elif request.method == 'POST':
-        form_projeto = "dict_keys(['nome_projeto', 'participantes_projeto', 'orientador_Projeto'])"
-        form_curso = "dict_keys(['nome_curso', 'descricao_curso', 'cargahoraria_curso', 'instituicao_curso', 'certificado_curso'])"
-        form_geral = ""
-        return f"{request.form.keys()}"
-        nome = request.form.get('nome')
-        cpf = request.form.get('CPF')
-        telefone = request.form.get('telefone')
-        email = request.form.get('email')
-        resumo = request.form.get('resumo')
+
+        # Formulário projeto
+        if f"{request.form.keys()}" == "dict_keys(['nome_projeto', 'descricao_projeto', 'cargahoraria_Projeto', 'datainicio_Projeto', 'datafim_Projeto'])":
+            p = Projeto(
+                nome=request.form.get('nome_projeto'),
+                descricao=request.form.get('descricao_projeto'),
+                cargahoraria=request.form.get('cargehoraria_Projeto'),
+                data_inicio=request.form.get('datainicio_Projeto'),
+                data_fim=request.form.get('datafim_Projeto')
+            )
+            # Chamar função para salvar no banco de dados
+            return "N sei ainda"
+        # Formulário Curso
+        elif f"{request.form.keys()}" == "dict_keys(['nome_curso', 'descricao_curso', 'cargahoraria_curso', 'instituicao_curso', 'certificado_curso'])":
+            c = Curso(
+                nome=request.form.get('nome_curso'),
+                descricao=request.form.get("descricao_curso"),
+                cargahoraria=request.form.get("cargahoraria_curso"),
+                instituicao=request.form.get("instituicao_curso"),
+                certificado='??' #DESCOBRIR O Q CARALHOS FZR AQ
+            )
+
+            # COLOCAR ALGUMA FUNÇÃO PARA ENVIAR ISSO PARA O BANCO DE DADOS.
+            return "N sei ainda"
+        else:
+            nome = request.form.get('nome')
+            cpf = request.form.get('CPF')
+            telefone = request.form.get('telefone')
+            email = request.form.get('email')
+            resumo = request.form.get('resumo')
+
+            formacao = request.form.get('formacao')[0]
+            cursos = "AINDA N SEI COMO FAZER ESSA PORRA"
+            complemento = request.form.get('complemento_textarea')
+
+            projetos_andamento = "EU SEI LA"
+            projetos_finalizados = "sei lá porra"
+
+            area_atuacao = request.form.get('area_atuacao_select')
+            emprego_atual = request.form.get('emprego_input')
+            empregos_passados = ['n sei']
+
+            return f"{formacao}"
+
 
 if __name__ == '__main__':
     app.run(debug=True)

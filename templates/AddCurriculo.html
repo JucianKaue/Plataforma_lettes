@@ -39,6 +39,8 @@
                 <p id="subtitles"> Certificado do Curso: </p>
                 <label>&RightArrow;</label>
                 <input id="descricao_curso" name="certificado_curso"></input> <br></br>
+                
+                <!-- METER UM INPUT DE IMAGEM AQUI -->
 
                 <button type="submit"> Enviar </button> 
                 <button type="button" onclick="document.getElementById('add_curso').style.display='none' "> Sair </button>
@@ -115,52 +117,40 @@
                     </div>
                 </div>
 
-                <button type="submit"> Send Form </button>
-                </form>
-                <h2> Formação Acadêmica/Profissional </h2>
+                <h2> Formação Acadêmica </h2>
                 <div id = "formacao_profissional">
 
                     <div id="nivel_ensino">
                         <p id="subtitles"> Nível de Ensino: </p>
                         <label>&RightArrow;</label>
-                        <select name="formacao_prof" id ="formacao_prof" value="Ensino Médio Incompleto">
+                        <select name="formacao" id ="formacao_prof" value="Ensino Médio Incompleto">
                             {% for nivel in form_variaveis['niveis_ensino'] %}
                             <option value="{{ nivel[0] }} - {{ nivel[1] }}" >{{ nivel[0] }} - {{ nivel[1] }}</option>
                             {% endfor %}                      
                         </select>
                     </div>
-        
-            
                     <div id ="cursos">
                         <p id="subtitles"> Cursos: </p>
-
-                        <form>
-                            <label>&RightArrow;</label>
-                            <button type="button" placeholder="Adicionar Curso" id="create_curso" onclick="document.getElementById('add_curso').style.display='block' "> Adicionar Curso </button>
-                        </form>
-        
+                        <label>&RightArrow;</label>
+                        <button type="button" placeholder="Adicionar Curso" id="create_curso" onclick="document.getElementById('add_curso').style.display='block' "> Adicionar Curso </button>
                     </div>
-        
                     <div id="complemento">
                         <p id="subtitles"> Complemento: </p>
-                        <textarea id="complemento_textarea" rows="1" cols="50"> Informações adicionais </textarea>
+                        <textarea name="complemento_textarea" id="complemento_textarea" rows="5" cols="50" placeholder="Informações Adicionais"></textarea>
                     </div>
                 </div>   
 
                 <h2> Projetos </h2>
                 <div id = "projetos">
-
                     <div id="projetos_andamento">
                         <p id="subtitles"> Projetos em Andamento </p>
                         <label>&RightArrow;</label>
                         <button type="button" placeholder="Adicionar Curso" id="create_projeto" onclick="document.getElementById('add_projeto').style.display='block' "> Adicionar Projeto </button>
                     </div>
-        
-        
                     <div id="projetos_finalizados">
                         <p id="subtitles"> Projetos Finalizados</p>
+                        <!-- PRECISA ADICONAR UM BOTÃO PARA COLOCAR UM PROJETO FINALIZADO. Ou deixar apenas um botão e caso o usuarioa inserir a data de fim ele será considerado finalizado -->
                         <!-- Colocar os "projetos_andamento" que já foram finalizados aqui. Se puder fazer u mfor e colocar esse ícone, HUMILDE: <label>&RightArrow;</label>  -->
-
                     </div>
                 </div>
 
@@ -179,12 +169,12 @@
         
                     <div id="emprego_atual">
                         <p id="subtitles"> Emprego Atual</p>
-                        <form>
-                            <label>&RightArrow;</label>
-                            <input type="text" id="emprego_input" placeholder="Digite o seu emprego atual">
-                        </form>
+                        <label>&RightArrow;</label>
+                        <input type="text" name="emprego_input" id="emprego_input" placeholder="Digite o seu emprego atual">
                     </div>
-        
+
+
+                    <!-- Adiconar outra input aqui e em seguida listar o empregos abaixo do input -->
                     <div id="trabalhos_anteriores">
                         <p id="subtitles"> Trabalhos Anteriores</p>
                         <ul>
@@ -196,7 +186,8 @@
                     </div>
 
                 </div>
-                
+            <button type="submit"> Send Form </button>
+            </form>
             
         </div>
         <div id ="lado_esquerdo"></div>

@@ -1,3 +1,5 @@
+import datetime
+
 import mysql.connector
 
 database_padrao = 'mydb'
@@ -42,12 +44,12 @@ class Formacao:
 
 
 class Curso:
-    def __init__(self, nome=str, descricao=str, cargahoraria=int, certificado=str, criador_curso=str):
+    def __init__(self, nome=str, descricao=str, cargahoraria=int, certificado=str, instituicao=str):
         self._nome = nome
         self._descricao = descricao
         self._cargahoraria = cargahoraria
         self._certificado = certificado
-        self._criadorcurso = criador_curso
+        self._instituicao = instituicao
 
 
 class Projetos:
@@ -58,10 +60,11 @@ class Projetos:
 
 
 class Projeto:
-    def __init__(self, nome=str, descricao=str, cargahoraria=int):
+    def __init__(self, nome=str, descricao=str, cargahoraria=int, data_inicio=datetime.date, data_fim=datetime.date):
         self._nome = nome
         self._descricao = descricao
         self._cargahoraria = cargahoraria
+        self._datas = {'inicio': data_inicio, 'fim': data_fim}
 
 
 class Atuacao:
