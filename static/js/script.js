@@ -1,14 +1,23 @@
-function validate(type, value) {
-	let vr = false;
-	switch(type) {
-		case 'e':
-			vr = email.checkValidaty();
+function validate(tag) {
+	let stag;
+	let tp;
+	let vr;
+	try{
+		stag = document.querySelector(`#${tag}`);
+	}
+	catch{
+		stag = document.querySelector(`.${tag}`);
+	}
+	tp = stag.type;
+	switch(tp) {
+		case "email":
+			vr = stag.checkValidity();
 			break;
-		case 'n':
-			// code block
+		case "cpf":
+			vr = stag.value();
 			break;
 		default:
 			return(false);
-    }
-    return(false);
+	}
+	return(vr);
 }
