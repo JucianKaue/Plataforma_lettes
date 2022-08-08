@@ -34,15 +34,15 @@ c = Curriculo(
 
 @app.route('/')
 def main():
-    return render_template('index.html', title='WELCOME', curriculo=c)
+    return render_template('Curriculo.html', title='WELCOME', curriculo=c)
 
 
 @app.route('/adicionarcurriculo', methods=['GET', 'POST'])
 def AddCurriculo():
     if request.method == 'GET':
         return render_template('AddCurriculo.html', form_variaveis={
-            'niveis_ensino': mysql_select('__niveis_ensino'),
-            'areas_atuacao': mysql_select('__areas_atuacao')
+            'niveis_ensino': mysql_select('__nivel_ensino'),
+            'areas_atuacao': mysql_select('__area_atuacao')
         })
     elif request.method == 'POST':
 
@@ -56,7 +56,7 @@ def AddCurriculo():
                 data_fim=request.form.get('datafim_Projeto')
             )
             # Chamar função para salvar no banco de dados
-            return "N sei ainda"
+
         # Formulário Curso
         elif f"{request.form.keys()}" == "dict_keys(['nome_curso', 'descricao_curso', 'cargahoraria_curso', 'instituicao_curso', 'certificado_curso'])":
             c = Curso(
@@ -67,8 +67,10 @@ def AddCurriculo():
                 certificado='??' #DESCOBRIR O Q CARALHOS FZR AQ
             )
 
-            # COLOCAR ALGUMA FUNÇÃO PARA ENVIAR ISSO PARA O BANCO DE DADOS.
-            return "N sei ainda"
+            mysql_insert('cursos', {
+                'id': 'DEFAULT',
+            })
+
         else:
             nome = request.form.get('nome')
             cpf = request.form.get('CPF')

@@ -4,7 +4,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title> Currículo Lattes</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='{{ url_for("static", filename="AddCurriculo.css") }}'>
+    <link rel='stylesheet' href="{{ url_for('static', filename='AddCurriculo.css') }}">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <div class="container">
         
         <!-- Abre uma abra extra para fazer o cadastro, muito pica -->
-        <div  id="add_curso"  style="width: 554.92px; height: 500px; background-color: #2f3034; color: white; display: none; position: 
+        <div  id="add_curso"  style="width: 554.92px; height: 550px; background-color: #2f3034; color: white; display: none; position: 
         fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
             <form id="cadastro_de_curso" style="padding: 1rem;" method="post">
                 <h3 style="text-align: center;">Adicionar Curso</h3>
@@ -39,15 +39,13 @@
                 <p id="subtitles"> Certificado do Curso: </p>
                 <label>&RightArrow;</label>
                 <input id="descricao_curso" name="certificado_curso"></input> <br></br>
-                
-                <!-- METER UM INPUT DE IMAGEM AQUI -->
 
                 <button type="submit"> Enviar </button> 
                 <button type="button" onclick="document.getElementById('add_curso').style.display='none' "> Sair </button>
             </form>
         </div>
 
-        <div  id="add_projeto"  style="width: 554.92px; height: 350px; background-color: #2f3034; color: white; display: none; position: 
+        <div  id="add_projeto_andamento"  style="width: 554.92px; height: 550px; background-color: #2f3034; color: white; display: none; position: 
         fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
             <form id="cadastro_de_projeto" style="padding: 1rem;" method="POST">
                 <h3 style="text-align: center;">Adicionar projeto</h3>
@@ -71,17 +69,57 @@
 
                 <p id="subtitles"> Data Inicio: </p>
                 <label>&RightArrow;</label>
-                <input id="datainicio_Projeto" name="datainicio_Projeto"></input> <br></br>
+                <input type="date" id="datainicio_Projeto" name="datainicio_Projeto"></input> <br></br>
 
                 <p id="subtitles"> Data Fim: </p>
                 <label>&RightArrow;</label>
-                <input id="datafim_Projeto" name="datafim_Projeto"></input> <br></br>
+                <input type="date" id="datafim_Projeto" name="datafim_Projeto"></input> <br></br>
 
                 <button type="submit"> Enviar </button> 
-                <button type="button" onclick="document.getElementById('add_projeto').style.display='none' "> Sair </button>
+                <button type="button" onclick="document.getElementById('add_projeto_andamento').style.display='none' "> Sair </button>
             </form>
         </div>
-        
+
+        <div  id="add_projeto_finalizado"  style="width: 554.92px; height: 550px; background-color: #2f3034; color: white; display: none; position: 
+        fixed; left: 65vh; border-radius: 2rem; border: 0.2rem solid white">
+            <form id="cadastro_de_projeto" style="padding: 1rem;" method="POST">
+                <h3 style="text-align: center;">Adicionar projeto Finalizado</h3>
+
+                <p id="subtitles"> Nome: </p>
+                <label>&RightArrow;</label>
+                <input id="nome_projeto" name="nome_projeto"></input> <br></br>
+                
+                <p id="subtitles"> Descrição: </p>
+                <label>&RightArrow;</label>
+                <input id="descricao_projeto" name="descricao_projeto"></input> <br></br>
+                
+                <p id="subtitles"> Carga Horaria: </p>
+                <label>&RightArrow;</label>
+                <input id="cargahoraria_Projeto" name="cargahoraria_Projeto"></input> <br></br>
+                
+                <!-- 
+                    Copiei o Código de cima e alterei algumas coisas, não tenho certeza se era necessário, mas é funcional.
+                -->
+
+                <p id="subtitles"> Data Inicio: </p>
+                <label>&RightArrow;</label>
+                <input input type="date" id="datainicio_Projeto" name="datainicio_Projeto"></input> <br></br>
+
+                <p id="subtitles"> Data Fim: </p>
+                <label>&RightArrow;</label>
+                <input input type="date" id="datafim_Projeto" name="datafim_Projeto"></input> <br></br>
+
+                <button type="submit"> Enviar </button> 
+                <button type="button" onclick="document.getElementById('add_projeto_finalizado').style.display='none' "> Sair </button>
+            </form>
+        </div>
+
+
+        <!-- 
+            Div principal
+        -->
+
+
         <div id ="main">
             <form method="post">
                 <div id = "dados_gerais">
@@ -145,11 +183,14 @@
                     <div id="projetos_andamento">
                         <p id="subtitles"> Projetos em Andamento </p>
                         <label>&RightArrow;</label>
-                        <button type="button" placeholder="Adicionar Curso" id="create_projeto" onclick="document.getElementById('add_projeto').style.display='block' "> Adicionar Projeto </button>
+                        <button type="button" placeholder="Adicionar Projeto em Andamento" id="create_projeto_andamento" onclick="document.getElementById('add_projeto_andamento').style.display='block' "> Adicionar Projeto em Andamento </button>
                     </div>
                     <div id="projetos_finalizados">
                         <p id="subtitles"> Projetos Finalizados</p>
-                        <!-- PRECISA ADICONAR UM BOTÃO PARA COLOCAR UM PROJETO FINALIZADO. Ou deixar apenas um botão e caso o usuarioa inserir a data de fim ele será considerado finalizado -->
+                        <label>&RightArrow;</label>
+                        <button type="button" placeholder="Adicionar Projeto Finalizado" id="create_projeto_finalizado" onclick="document.getElementById('add_projeto_finalizado').style.display='block' "> Adicionar Projeto Finalizado </button>
+
+                        <!-- PRECISA ADICIONAR UM BOTÃO PARA COLOCAR UM PROJETO FINALIZADO. Ou deixar apenas um botão e caso o usuarioa inserir a data de fim ele será considerado finalizado -->
                         <!-- Colocar os "projetos_andamento" que já foram finalizados aqui. Se puder fazer u mfor e colocar esse ícone, HUMILDE: <label>&RightArrow;</label>  -->
                     </div>
                 </div>
@@ -170,25 +211,25 @@
                     <div id="emprego_atual">
                         <p id="subtitles"> Emprego Atual</p>
                         <label>&RightArrow;</label>
-                        <input type="text" name="emprego_input" id="emprego_input" placeholder="Digite o seu emprego atual">
+                        <input type="text" name="emprego_input" id="emprego_input" placeholder="Digite o Emprego Atual">
                     </div>
 
 
-                    <!-- Adiconar outra input aqui e em seguida listar o empregos abaixo do input -->
-                    <div id="trabalhos_anteriores">
-                        <p id="subtitles"> Trabalhos Anteriores</p>
-                        <ul>
-                            <li>1</li>
-                            <li>1</li>
-                            <li>1</li>
-                        </ul>
+                    <!-- Adiconar outro input aqui e em seguida listar o empregos abaixo do input -->
+                    
+                    <div id="empregos_anteriores">
+                        <p id="subtitles"> Empregos Anteriores</p>
+                        <label>&RightArrow;</label>
+                        <input type="text" name="emprego_anterior_input" id="emprego_anterior_input" placeholder="Digite Empregos Anteriores: " >
                         <!-- Colocar os "empregos_atuais" que já foram finalizados aqui. Se puder fazer u mfor e colocar esse ícone, HUMILDE: <label>&RightArrow;</label>  -->
                     </div>
 
                 </div>
-            <button type="submit"> Send Form </button>
+                <br><br>
+                <div id="send_form_button">
+                    <button type="submit" id="Send"> Enviar </button> 
+                </div>
             </form>
-            
         </div>
         <div id ="lado_esquerdo"></div>
         <div id ="lado_direito"></div>

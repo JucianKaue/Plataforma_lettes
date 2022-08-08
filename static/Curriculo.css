@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap%27');
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Noto Sans Mono', monospace;
+    list-style: none;
+}
+
+/* Abaixo: Divida o container em 6 blocos */
+    .container {
+        display: grid;
+        grid-template-columns: 0.2fr 2fr 0.2fr;
+        grid-template-rows: auto 5vh;
+        grid-template-areas: 
+        "header header header"
+        ". main ."
+        ". . .";
+    }
+
+
+    /* Abaixo: Cuida do Icone e do Cabeçalho, onde irá a logo */
+
+    header > #top_logo {
+        grid-area: header;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    header > #top_logo > #imagem_header {
+        padding: 1rem;
+        padding-left: 1rem;
+    }
+
+    header > #top_logo > #icones {
+        padding: 1rem;
+        margin-top: 4vh;
+        margin-left: 60vw;
+    }
+
+    ion-icon {
+        font-size: 4rem;
+        text-align: center;
+        color: blue;
+    }
+
+    ion-icon:hover {
+        background-color: gray;
+        color: white;
+        cursor: pointer;
+    }
+
+    /* Abaixo: Cuida do Menu */
+
+    #menu > #menuzin {
+        background-color: rgb(86, 86, 245);
+        text-align: center;
+        padding: 0.8rem;
+
+    }
+
+    #menu > #menuzin > li {
+        display: inline;
+        background-color: rgb(86, 86, 245);
+        text-align: center;
+    }
+
+    #menu > #menuzin > li > a {
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        padding: 0.8rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    #menu > #menuzin > li > a:hover {
+        background-color: gray;
+    }
+
+
+    /* Abaixo: Parte do CSS que cuida do Profile(Foto do cara, nome, ids, resumo) */
+    #main {
+        grid-area: main;
+        background-color: white;
+        display: grid;
+        grid-template-columns: 2fr ;
+        grid-template-rows: auto 5vh;
+        grid-template-areas: 
+        "profile"
+        "profile";
+    }
+
+    #main > #profile {
+        grid-area: profile;
+        display: inline;
+        background-color: white;
+        color: #1C4CE6;
+
+    }
+
+    #main > #profile  {
+        display: block;
+
+    }
+
+    #main > #profile > #alinhar {
+        display: inline-flex;
+        padding: 2rem;
+    }
+
+    #main > #profile > #div_imagem, #profile_div {
+        display: block;
+        padding: 2rem;
+    }
+
+    #main > #profile > #resumo {
+        padding: 1.2rem;
+    }
+
+    #main > #profile > #resumo > p {
+        padding: 1.5rem;
+    }
+
+#main > h3 {
+    color:#1C4CE6;
+    border-bottom: 0.1rem solid black;
+    padding: 0.2rem;
+    padding-top: 2rem;
+    
+}
+
+#main > h4 {
+    padding: 0.5rem;
+    color: #0B5FE3;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 5vh;
+    
+}
+
+#main > p,li {
+    padding: 0.5rem;
+    margin-left: 8vh;
+    color: #0B7BE3;
+}
+
+
+
+
+

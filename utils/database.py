@@ -2,7 +2,7 @@ import datetime
 
 import mysql.connector
 
-database_padrao = 'mydb'
+database_padrao = 'Site_lettes'
 
 
 class Curriculo:
@@ -118,9 +118,8 @@ def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
         sql += ' WHERE '
         for k in filtros.keys():
             sql += F'{k} = {filtros[k]} AND '
-        sql = f"{sql[:-5]};"
-    else:
-        sql += ';'
+        sql = f"{sql[:-5]}"
+    sql += ' order by id;'
 
     print(sql)
 
@@ -131,5 +130,3 @@ def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
     return c.fetchall()
 
 
-
-#Curriculo.get_curriculo_by_id(7)
