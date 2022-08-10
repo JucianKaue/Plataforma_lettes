@@ -57,7 +57,7 @@ function validate(tag) {
 			for(let n = 0; n <= 9; n++){
 				let re = new RegExp(`^${n}+$`);
 				if(re.test(val)){
-					return false;
+					return(false);
 				}
 			}
 			for(i = 1; i <= 9; i++){
@@ -68,7 +68,7 @@ function validate(tag) {
 				rest = 0;
 			}
 			if(rest != parseInt(val.substring(9,10))) {
-				return false;
+				return(false);
 			}
 			sum = 0;
 			for(i = 1; i <= 10; i++) {
@@ -79,9 +79,28 @@ function validate(tag) {
 				rest = 0;
 			}
 			if(rest != parseInt(val.substring(10,11))){
-				return false;
+				return(false);
 			}
-			return true;
+			return(true);
 			break;
 	}
+}
+
+function setCookie(key,value){
+	document.cookie = `${key}=${value}`;
+}
+
+function readCookie(key='',convert=false) {
+	let result;
+	let dc = document.cookie
+	  .split(';')
+	  .map(cookie => cookie.split('='))
+	  .reduce((acumulator,[k,v]) => ({...acumulator,[k.trim()]: decodeURIComponent(v) }),{});
+	key == '' ? result = dc : result = dc[key];
+	!isNaN(result) && convert ? result = Number(result) : {};
+	return(result);
+}
+
+function deleteCookie(key) {
+	document.cookie = `${key}=; expires = Thu, 01 Jan 1970 00:00:01 GTM;`;
 }
