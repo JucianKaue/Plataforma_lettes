@@ -20,13 +20,13 @@
             <form id="cadastro_de_curso" style="padding: 1rem;">
                 <p id="subtitles"> Nome do Curso: </p>
                     <label>&RightArrow;</label>
-                    <input id="nome_curso"></input> <br></br>
+                    <input id="nome_curso"> <br></br>
                 <p id="subtitles"> Participantes do Curso: </p>
                     <label>&RightArrow;</label>
-                    <input id="participantes_curso"></input> <br></br>
+                    <input id="participantes_curso"> <br></br>
                 <p id="subtitles"> Orientador do Curso: </p>
                     <label>&RightArrow;</label>
-                    <input id="orientador_curso"></input> <br></br>
+                    <input id="orientador_curso"> <br></br>
                     <button type="button"> Enviar </button> 
                 <!-- Falta a função de enviar as alterações  -->
                 <button type="button" onclick="document.getElementById('add_curso').style.display='none' "> Sair </button>
@@ -38,13 +38,13 @@
             <form id="cadastro_de_projeto" style="padding: 1rem;">
                 <p id="subtitles"> Nome do Projeto: </p>
                     <label>&RightArrow;</label>
-                    <input id="nome_projeto"></input> <br></br>
+                    <input id="nome_projeto"> <br></br>
                 <p id="subtitles"> Participantes do Projeto: </p>
                     <label>&RightArrow;</label>
-                    <input id="participantes_projeto"></input> <br></br>
+                    <input id="participantes_projeto"> <br></br>
                 <p id="subtitles"> Orientador do Projeto: </p>
                     <label>&RightArrow;</label>
-                    <input id="orientador_Projeto"></input> <br></br>
+                    <input id="orientador_projeto"> <br></br>
                 <button type="button"> Enviar </button> 
                 <button type="button" onclick="document.getElementById('add_projeto').style.display='none' "> Sair </button>
             </form>
@@ -52,7 +52,7 @@
         
         <div id ="main">
             <form action="/" method="post">
-                <div id = "dados_gerais">
+                <div id="dados_gerais">
                     <h2> Dados Gerais</h2>
                     <div id="Nome">
                         <p id="subtitles"> Nome: </p>
@@ -86,12 +86,12 @@
                 </div>
 
                 <h2> Formação Acadêmica/Profissional </h2>
-                <div id = "formacao_profissional">
+                <div id="formacao_profissional">
 
                     <div id="nivel_ensino">
                         <p id="subtitles"> Nível de Ensino: </p>
                         <label>&RightArrow;</label>
-                        <select name="formacao_prof" id ="formacao_prof" value="Ensino Médio Incompleto">
+                        <select name="formacao_prof" id="formacao_prof" value="Ensino Médio Incompleto">
                             {% for nivel in form_variaveis['niveis_ensino'] %}
                             <option value="{{ nivel[0] }} - {{ nivel[1] }}" >{{ nivel[0] }} - {{ nivel[1] }}</option>
                             {% endfor %}                      
@@ -116,7 +116,7 @@
                 </div>   
 
                 <h2> Projetos </h2>
-                <div id = "projetos">
+                <div id="projetos">
 
                     <div id="projetos_andamento">
                         <p id="subtitles"> Projetos em Andamento </p>
@@ -133,12 +133,12 @@
                 </div>
 
                 <h2> Atuação </h2>
-                <div id = "atuacao">
+                <div id="atuacao">
 
                     <div id="area_atuacao">
                         <p id="subtitles"> Área atual de atuação </p>
                         <label>&RightArrow;</label>
-                        <select name="area_atuacao_select" id ="area_atuacao_select" value="Valorant">
+                        <select name="area_atuacao_select" id="area_atuacao_select" value="Valorant">
                             {% for area in form_variaveis['areas_atuacao'] %}
                             <option value="{{ area[1] }}" > {{ area[1] }} </option>
                             {% endfor %}

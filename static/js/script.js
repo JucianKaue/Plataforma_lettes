@@ -49,7 +49,6 @@ function validate(tag) {
 	switch(tp) {
 		case "email":
 			return(stag.checkValidity());
-			break;
 		case "cpf":
 			val = val.replace(/[^\d]+/g,'');
 			let sum = 0;
@@ -82,7 +81,6 @@ function validate(tag) {
 				return(false);
 			}
 			return(true);
-			break;
 	}
 }
 
@@ -96,8 +94,12 @@ function readCookie(key='',convert=false) {
 	  .split(';')
 	  .map(cookie => cookie.split('='))
 	  .reduce((acumulator,[k,v]) => ({...acumulator,[k.trim()]: decodeURIComponent(v) }),{});
-	key == '' ? result = dc : result = dc[key];
-	!isNaN(result) && convert ? result = Number(result) : {};
+	key == ''
+	  ? result = dc
+	  : result = dc[key];
+	!isNaN(result) && convert
+	  ? result = Number(result)
+	  : {};
 	return(result);
 }
 
