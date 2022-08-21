@@ -16,4 +16,3 @@ cursor.execute(
     ('DEFAULT', 'Ademir Decezare', '854.422.546-87', '3423456512', 'ademirdecezare@gmail.com', 'Pai de familia', '2022-08-04'))
 mydb.commit()
 print(cursor.rowcount)
-
