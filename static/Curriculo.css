@@ -6,6 +6,7 @@
     font-family: 'Noto Sans Mono', monospace;
     list-style: none;
 }
+
 /* Abaixo: Divida o container em 6 blocos */
     .container {
         display: grid;
@@ -143,3 +144,8 @@
     margin-left: 8vh;
     color: #0B7BE3;
 }
+
+
+
+
+

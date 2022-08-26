@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from utils.database import *
 
 app = Flask(__name__)
@@ -34,19 +34,62 @@ c = Curriculo(
 
 @app.route('/')
 def main():
-    return render_template('index.html', title='WELCOME', curriculo=c)
+    return render_template('Curriculo.html', title='WELCOME', curriculo=c)
 
 
 @app.route('/adicionarcurriculo', methods=['GET', 'POST'])
-def AddCurriculo(request):
+def AddCurriculo():
     if request.method == 'GET':
         return render_template('AddCurriculo.html', form_variaveis={
-            'niveis_ensino': mysql_select('__niveis_ensino'),
-            'areas_atuacao': mysql_select('__areas_atuacao')
+            'niveis_ensino': mysql_select('__nivel_ensino'),
+            'areas_atuacao': mysql_select('__area_atuacao')
         })
     elif request.method == 'POST':
-        nome = request['nome_input']
-        print(nome)
+
+        # Formulário projeto
+        if f"{request.form.keys()}" == "dict_keys(['nome_projeto', 'descricao_projeto', 'cargahoraria_Projeto', 'datainicio_Projeto', 'datafim_Projeto'])":
+            p = Projeto(
+                nome=request.form.get('nome_projeto'),
+                descricao=request.form.get('descricao_projeto'),
+                cargahoraria=request.form.get('cargehoraria_Projeto'),
+                data_inicio=request.form.get('datainicio_Projeto'),
+                data_fim=request.form.get('datafim_Projeto')
+            )
+            # Chamar função para salvar no banco de dados
+
+        # Formulário Curso
+        elif f"{request.form.keys()}" == "dict_keys(['nome_curso', 'descricao_curso', 'cargahoraria_curso', 'instituicao_curso', 'certificado_curso'])":
+            c = Curso(
+                nome=request.form.get('nome_curso'),
+                descricao=request.form.get("descricao_curso"),
+                cargahoraria=request.form.get("cargahoraria_curso"),
+                instituicao=request.form.get("instituicao_curso"),
+                certificado='??' #DESCOBRIR O Q CARALHOS FZR AQ
+            )
+
+            mysql_insert('cursos', {
+                'id': 'DEFAULT',
+            })
+
+        else:
+            nome = request.form.get('nome')
+            cpf = request.form.get('CPF')
+            telefone = request.form.get('telefone')
+            email = request.form.get('email')
+            resumo = request.form.get('resumo')
+
+            formacao = request.form.get('formacao')[0]
+            cursos = "AINDA N SEI COMO FAZER ESSA PORRA"
+            complemento = request.form.get('complemento_textarea')
+
+            projetos_andamento = "EU SEI LA"
+            projetos_finalizados = "sei lá porra"
+
+            area_atuacao = request.form.get('area_atuacao_select')
+            emprego_atual = request.form.get('emprego_input')
+            empregos_passados = ['n sei']
+
+            return f"{formacao}"
 
 
 if __name__ == '__main__':

@@ -128,3 +128,5 @@ def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
     c.execute(f'USE {database_padrao};')
     c.execute(f"{sql}")
     return c.fetchall()
+
+
