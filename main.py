@@ -72,9 +72,11 @@ def AddCurriculo():
                 certificado='??' #DESCOBRIR O Q CARALHOS FZR AQ
             )
 
-            mysql_insert('cursos', {
-                'id': 'DEFAULT',
-            })
+            mysql_insert(
+                'cursos', {
+                    'id': 'DEFAULT',
+                }
+            )
 
         else:
             nome = request.form.get('nome')
