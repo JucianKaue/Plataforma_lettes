@@ -84,7 +84,11 @@ def mysql_command(sql):
     c = db.cursor()
     c.execute(f"USE {database_padrao}")
     c.execute(f"{sql}")
-    return c.fetchall()
+    db.commit()
+    try:
+        return c.fetchall()
+    except:
+        return 'nada'
 
 
 def mysql_insert(table, data):
@@ -117,9 +121,9 @@ def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
     if len(filtros.keys()) > 0:
         sql += ' WHERE '
         for k in filtros.keys():
-            sql += F'{k} = {filtros[k]} AND '
+            sql += F"{k} = '{filtros[k]}' AND "
         sql = f"{sql[:-5]}"
-    sql += ' order by id;'
+    sql += ';'
 
     print(sql)
 

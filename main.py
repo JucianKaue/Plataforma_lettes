@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+import datetime
+
+from flask import Flask, render_template, request, redirect, url_for
 from utils.database import *
 
 app = Flask(__name__)
@@ -90,6 +92,51 @@ def AddCurriculo():
             empregos_passados = ['n sei']
 
             return f"{formacao}"
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def Login():
+    if request.method == 'GET':
+        return render_template('login.html', title='Login')
+    elif request.method == 'POST':
+        user = {
+            'username': request.form.get('username'),
+            'password': request.form.get('password'),
+            'ip': request.environ['REMOTE_ADDR']
+        }
+        user_db = mysql_select('users', filtros={'username': user['username'], 'password': user['password']})
+        if user_db:
+            mysql_command(f"UPDATE users SET ip = '{user['ip']}' WHERE username = '{user['username']}'")
+        else:
+            return f'Usuário ou senha incorretos'
+
+        return redirect(url_for('main'))
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def Register():
+    if request.method == 'GET':
+        return render_template('Cadastro.html', title='Cadastro')
+    elif request.method == 'POST':
+        if request.form.get('password') != request.form.get('password_confirm'):
+            return "SENHAS NÃO COINCIDEM"
+        if mysql_select('users', filtros={'username': request.form.get('username')}):
+            return "Esse nome de usuário já está registrado."
+        if mysql_select('users', filtros={'email': request.form.get('email')}):
+            return "Esse email está logado."
+
+        user = {
+            'username': request.form.get('username'),
+            'email': request.form.get('email'),
+            'password': request.form.get('password'),
+            'createdate': f"{datetime.datetime.today().year}-{datetime.datetime.today().month:0>2}-{datetime.datetime.today().day:0>2}"
+        }
+
+        try:
+            mysql_insert('users', user)
+            return redirect(url_for('Login'))
+        except:
+            return 'Um erro inesperado ocorreu durante a utilização do banco de dados.'
 
 
 if __name__ == '__main__':
