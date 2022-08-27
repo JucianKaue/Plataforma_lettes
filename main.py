@@ -10,7 +10,7 @@ c = Curriculo(
     email='juciandecezare@hotmail.com',
     resumo='Hello, my name is Jucian',
     ultimaatualizacao='Today',
-    formacao=None,
+    formacao=True,
     atuacao=Atuacao(
         id=1,
         area='Ciencia da computaria',
@@ -19,17 +19,22 @@ c = Curriculo(
     ),
     projetos=Projetos(
         id=1,
-        projetosandamento=[Projeto(
-            nome='DDoS do pellas',
-            descricao='cansei da vida',
-            cargahoraria=1
-        )],
-        projetosterminados=[Projeto(
-            nome='Dormir',
-            descricao='Estou com sono',
-            cargahoraria=20
-        )]
-    ))
+        projetosandamento=[
+            Projeto(
+                nome='DDoS do pellas',
+                descricao='cansei da vida',
+                cargahoraria=1
+            )
+        ],
+        projetosterminados=[
+            Projeto(
+                nome='Dormir',
+                descricao='Estou com sono',
+                cargahoraria=20
+            )
+        ]
+    )
+)
 
 
 @app.route('/')
