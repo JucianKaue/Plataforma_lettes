@@ -36,7 +36,9 @@ c = Curriculo(
 
 @app.route('/')
 def main():
-    return render_template('Curriculo.html', title='WELCOME', curriculo=c)
+    username = mysql_select('users', ['username'], filtros={'ip': request.environ['REMOTE_ADDR']})
+    if username: username = username[0][0]
+    return render_template('Curriculo.html', title='WELCOME', curriculo=c, username=username)
 
 
 @app.route('/adicionarcurriculo', methods=['GET', 'POST'])
@@ -106,11 +108,18 @@ def Login():
         }
         user_db = mysql_select('users', filtros={'username': user['username'], 'password': user['password']})
         if user_db:
-            mysql_command(f"UPDATE users SET ip = '{user['ip']}' WHERE username = '{user['username']}'")
+            mysql_command(f"UPDATE users SET ip = '{user['ip']}' WHERE username = '{user['username']}' limit 1;")
         else:
             return f'Usuário ou senha incorretos'
 
         return redirect(url_for('main'))
+
+
+@app.route('/logout')
+def Logout():
+    mysql_command(f"UPDATE users SET ip = Null WHERE ip = '{request.environ['REMOTE_ADDR']}' limit 1;")
+    return redirect(url_for('main'))
+
 
 
 @app.route('/register', methods=['GET', 'POST'])

@@ -79,16 +79,16 @@ def mysql_connect():
     return mysql.connector.connect(host="127.0.0.1", user="root", password="")
 
 
-def mysql_command(sql):
+def mysql_command(sql, fetch=False):
     db = mysql_connect()
     c = db.cursor()
     c.execute(f"USE {database_padrao}")
     c.execute(f"{sql}")
     db.commit()
-    try:
+    if fetch:
         return c.fetchall()
-    except:
-        return 'nada'
+    else:
+        return f"{c.rowcount} rows affected"
 
 
 def mysql_insert(table, data):
