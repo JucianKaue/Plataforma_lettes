@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap%27');
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Noto Sans Mono', monospace;
+    list-style: none;
+}
+
+.container2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "imagem_header icones"
+    ". . ."
+}
+
+footer {
+    display: grid;
+    grid-template-areas: 
+    "span li span2";
+    color: white;
+    font-size: 12px;
+    background-color: rgb(86, 86, 245);
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+footer span,span2 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+footer > ul > li  {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+/*
+
+Design 1: 
+    footer {
+        display: grid;
+        color: white;
+        font-size: 12px;
+        background-color: rgb(86, 86, 245);
+        padding: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    footer span {
+        font-size: 2rem;
+        text-align: center;
+
+    }
+
+    footer > ul > li  {
+        font-size: 0.8rem;
+        position: relative;
+        text-align: center;
+}
+Desing 1.
+*/
+
+header {
+    justify-content: space-between;
+    display: flex;
+}
+
+header > #imagem_header {
+    padding: 1rem;
+    padding-left: 1rem;
+}
+
+
+header > #icones {
+    grid-area: icones;
+    display: inline-block;
+    padding: 1rem;
+    margin-top: 1.5vh;
+    margin-left: 62vw;
+}
+
+ion-icon {
+    font-size: 3.5rem;
+    text-align: center;
+    color: blue;
+}
+
+ion-icon:hover {
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+.container2 > header > #icones > a {
+    text-decoration: none;
+}

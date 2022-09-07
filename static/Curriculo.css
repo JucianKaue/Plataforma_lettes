@@ -1,11 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap%27');
-* {
-    padding: 0;
-    box-sizing: border-box;
-    margin: 0;
-    font-family: 'Noto Sans Mono', monospace;
-    list-style: none;
-}
 
 /* Abaixo: Divida o container em 6 blocos */
     .container {
@@ -16,38 +9,6 @@
         "header header header"
         ". main ."
         ". . .";
-    }
-
-
-    /* Abaixo: Cuida do Icone e do Cabeçalho, onde irá a logo */
-
-    header > #top_logo {
-        grid-area: header;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    header > #top_logo > #imagem_header {
-        padding: 1rem;
-        padding-left: 1rem;
-    }
-
-    header > #top_logo > #icones {
-        padding: 1rem;
-        margin-top: 4vh;
-        margin-left: 60vw;
-    }
-
-    ion-icon {
-        font-size: 4rem;
-        text-align: center;
-        color: blue;
-    }
-
-    ion-icon:hover {
-        background-color: gray;
-        color: white;
-        cursor: pointer;
     }
 
     /* Abaixo: Cuida do Menu */

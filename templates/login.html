@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Login.css') }}">
+    <title> Login </title>
+</head>
+<body>
+    <div id="Logar">
+        <h1> Login </h1>
+        <form method="POST">
+            <div id="form">
+                <label for="text"> Nome de Usuário </label>
+                <input type="text" name="username" id="login" placeholder="Digite seu nome de Usuário:">
+                <label for="passoword"> Senha </label>
+                <input type="password" name="password" id="senha" placeholder="Digite sua Senha:">
+            </div>
+
+            <button type="submit" id="voltarpginicial"> Logar </button> <br>
+        </form>
+
+        <a href="/register">
+            <button id="casdastragem"> Não tem uma conta? </button>
+        </a>
+       
+    </div>
+    <script type="module"  src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" > </script>
+</body>
+</html>

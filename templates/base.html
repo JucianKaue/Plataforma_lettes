@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title> Currículo Lattes </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css')}}">
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container2">
+        <header>
+            <div id="imagem_header"> 
+                <img src="{{ url_for('static', filename='images/qpncLogo.png') }}" style = "width: 11vw ; height: auto ">
+            </div>
+            <div id="icones">
+                {% if username %}
+                    <a href="/adicionarcurriculo">
+                        <ion-icon name="person-add-outline"></ion-icon>
+                    </a>
+                    <a href="/logout">
+                        <ion-icon name="log-out-outline" title="Log In"></ion-icon>
+                    </a>
+                {% else %}
+                    <a href="/login">
+                        <ion-icon name="log-in-outline" title="Log In"></ion-icon>
+                    </a>
+                {% endif %}
+            </div>
+        </header>
+        {% if username %}
+            <p>Olá, {{ username }}</p>
+        {% endif %}
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <footer>
+        <span>&copy;</span> 
+        <ul>
+            <li>Jucian Kauê Decezare</li>
+            <li>Júlia Pagliochi Dupont</li>
+            <li>Marco Antônio Zerbielli Bee</li>
+            <li>Matheus Zuchi Balbinot</li>
+        </ul>
+        <span2>&copy;</span2> 
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
