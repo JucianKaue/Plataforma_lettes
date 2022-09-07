@@ -1,13 +1,11 @@
 import datetime
-
 import mysql.connector
 
 database_padrao = 'Site_lettes'
 
-
 class Curriculo:
-    def __init__(self, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
-        self._idcurriculo = 'DEFAULT'
+    def __init__(self, idcurriculo, nome, CPF, telefone, email, resumo, ultimaatualizacao, formacao, atuacao, projetos):
+        self._idcurriculo = idcurriculo
         self._imagem = CPF
         self._nome = nome
         self._cpf = CPF
@@ -53,16 +51,16 @@ class Curso:
 
 
 class Projetos:
-    def __init__(self, id=int, projetosandamento=list, projetosterminados=str):
-        self._id = id
+    def __init__(self, projetosandamento=list, projetosterminados=str):
         self._projetosandamento = projetosandamento
         self._projetosterminados = projetosterminados
 
 
 class Projeto:
-    def __init__(self, nome=str, descricao=str, cargahoraria=int, data_inicio=datetime.date, data_fim=datetime.date):
+    def __init__(self, nome=str, descricao=str, coordenador=str, cargahoraria=int, data_inicio=datetime.date, data_fim=datetime.date):
         self._nome = nome
         self._descricao = descricao
+        self._coordenador = coordenador
         self._cargahoraria = cargahoraria
         self._datas = {'inicio': data_inicio, 'fim': data_fim}
 
@@ -134,3 +132,81 @@ def mysql_select(table=str(' '), columns=list([]), filtros=dict({})):
     return c.fetchall()
 
 
+def mysql_get_curriculo(id):
+    db = mysql_connect()
+    c = db.cursor(buffered=True)
+    c.execute(f"USE {database_padrao}")
+    c.execute(f"SELECT id, nome, telefone, ultimaatualizacao, resumo FROM curriculo WHERE curriculo.id = {id};")
+    geral = c.fetchall()
+    c.execute(f"SELECT __nivel_ensino.nivel, cursos.nome, cursos.cargahoraria, cursos.descricao, cursos.instituição, Formacao.complemento FROM curriculo JOIN formacao on formacao.id = curriculo.Formacao JOIN formacao_has_cursos ON formacao.cursos = formacao_has_cursos.formação_id JOIN cursos ON formacao_has_cursos.cursos_id = cursos.id JOIN __nivel_ensino ON formacao.nivel_ensino = __nivel_ensino.id WHERE curriculo.id = {id};")
+    formacao = c.fetchall()
+
+    cursos = []
+    for curso in formacao:
+        cursos.append(Curso(
+            nome=curso[1],
+            cargahoraria=curso[2],
+            descricao=curso[3],
+            instituicao=curso[4]
+        ))
+
+    c.execute(f"SELECT atuacao.id, atuacao.empregoatual, empregosanteriores.nome, __area_atuacao.name FROM curriculo JOIN atuacao ON curriculo.atuacao = atuacao.id JOIN empregosanteriores ON empregosanteriores.atuacao = atuacao.empregos JOIN __area_atuacao ON atuacao.__area_atuacao = __area_atuacao.id WHERE curriculo.id = {id};")
+    atuacao = c.fetchall()
+
+    empregosanteriores = []
+    for a in atuacao:
+        empregosanteriores.append(a[2])
+
+    c.execute(f"SELECT projeto.nome, projeto.descricao, projeto.cargahoraria, projeto.natureza, projeto.coordenadores, proj_.datainicio, proj_.datatermino FROM curriculo JOIN projetos proj ON curriculo.projetos = proj.id JOIN projetosterminados proj_ on proj.projetosterminados = proj_.id JOIN projeto ON proj_.projeto_id = projeto.id WHERE curriculo.id = {id};")
+    projetos_terminados_list = c.fetchall()
+    projetos_terminados = []
+    for projeto_t in projetos_terminados_list:
+        projetos_terminados.append(Projeto(
+            nome=projeto_t[0],
+            descricao=projeto_t[1],
+            coordenador=projeto_t[4],
+            cargahoraria=projeto_t[2],
+            data_inicio=projeto_t[5],
+            data_fim=projeto_t[6]
+        ))
+
+    c.execute(f"SELECT projeto.nome, projeto.descricao, projeto.cargahoraria, projeto.natureza, projeto.coordenadores, proj_.datainicio FROM curriculo JOIN projetos proj ON curriculo.projetos = proj.id JOIN projetosemandamento proj_ on proj.projetosemandamento = proj_.id JOIN projeto ON proj_.projeto_id = projeto.id WHERE curriculo.id = {id};")
+    projetos_andamento_list = c.fetchall()
+    projetos_andamento = []
+    for projeto_a in projetos_andamento_list:
+        projetos_andamento.append(Projeto(
+            nome=projeto_a[0],
+            descricao=projeto_a[1],
+            coordenador=projeto_a[4],
+            cargahoraria=projeto_a[2],
+            data_inicio=projeto_a[5]
+        ))
+
+    curriculo = Curriculo(
+        idcurriculo=geral[0][0],
+        nome=f'{geral[0][1]}',
+        telefone=geral[0][2],
+        ultimaatualizacao=geral[0][3],
+        resumo=geral[0][4],
+        CPF=None,
+        email=None,
+        formacao=Formacao(
+            ensino=formacao[0][0],
+            cursos=cursos,
+            complemento=formacao[0][5]
+        ),
+        atuacao=Atuacao(
+            id=atuacao[0][0],
+            empregoatual=atuacao[0][1],
+            empregos=empregosanteriores,
+            area=atuacao[0][3]
+        ),
+        projetos=Projetos(
+            projetosandamento=projetos_andamento,
+            projetosterminados=projetos_terminados
+        )
+    )
+
+    print(geral, cursos[0]._instituicao)
+
+    return curriculo
