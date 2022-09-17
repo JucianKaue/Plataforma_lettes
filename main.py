@@ -5,40 +5,17 @@ from utils.database import *
 
 app = Flask(__name__)
 
-c = Curriculo(
-    nome='Jucian Kauê Decezare',
-    CPF='032.654.765-23',
-    telefone='49989140512',
-    email='juciandecezare@hotmail.com',
-    resumo='Hello, my name is Jucian',
-    ultimaatualizacao='Today',
-    formacao=None,
-    atuacao=Atuacao(
-        id=1,
-        area='Ciencia da computaria',
-        empregoatual='Cientista de porra nenhuma',
-        empregos=['EU NUNCA TABALHEI PORRA']
-    ),
-    projetos=Projetos(
-        id=1,
-        projetosandamento=[Projeto(
-            nome='DDoS do pellas',
-            descricao='cansei da vida',
-            cargahoraria=1
-        )],
-        projetosterminados=[Projeto(
-            nome='Dormir',
-            descricao='Estou com sono',
-            cargahoraria=20
-        )]
-    ))
-
 
 @app.route('/')
 def main():
     username = mysql_select('users', ['username'], filtros={'ip': request.environ['REMOTE_ADDR']})
     if username: username = username[0][0]
-    return render_template('Curriculo.html', title='WELCOME', curriculo=c, username=username)
+    return render_template(
+        'Curriculo.html',
+        title='WELCOME',
+        curriculo=mysql_get_curriculo(1),
+        username=username
+    )
 
 
 @app.route('/adicionarcurriculo', methods=['GET', 'POST'])
@@ -119,7 +96,6 @@ def Login():
 def Logout():
     mysql_command(f"UPDATE users SET ip = Null WHERE ip = '{request.environ['REMOTE_ADDR']}' limit 1;")
     return redirect(url_for('main'))
-
 
 
 @app.route('/register', methods=['GET', 'POST'])

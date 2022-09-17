@@ -46,7 +46,8 @@
                         <li>
                             <p>Curso: {{ curso._nome }} - {{ curso._cargahoraria }} horas.</p>
                             <p>{{ curso._descricao }}</p>
-                            <p><a href="#"> detalhar </a></p> <!-- TALVEZ SUBSTITUIR ISSO POR UM BOTÃO, OU TIRAR -->
+                            <p>by: {{ curso._instituicao }}</p>
+                            <!--<p><a href="#"> detalhar </a></p>  TALVEZ SUBSTITUIR ISSO POR UM BOTÃO, OU TIRAR -->
                             
                         </li>
                         {% endfor %}
@@ -66,6 +67,7 @@
                         {% for projeto in curriculo._projetos._projetosandamento %}
                         <li>
                             <h4> {{ projeto._nome }} - {{ projeto._cargahoraria }} horas</h4>
+                            <p>Coordenador: {{ projeto._coordenador }}</p>
                             <p> {{ projeto._descricao }} </p>
                         </li>
                         {% endfor %}
@@ -77,7 +79,9 @@
                         {% for projeto in curriculo._projetos._projetosterminados %}
                         <li>
                             <h4> {{ projeto._nome }} - {{ projeto._cargahoraria }} horas</h4>
+                            <p>Coordenador: {{ projeto._coordenador }}</p>
                             <p> {{ projeto._descricao }} </p>
+                            <p> Período: {{ projeto._datas['inicio'] }} a {{ projeto._datas['fim'] }}</p>
                         </li>
                         {% endfor %}
                     </ul>
@@ -91,11 +95,11 @@
                 <h4>Emprego Atual:</h4>
                 <p>{{ curriculo._atuacao._empregoatual }}</p>
                 <h4>Empregos Anteriores:</h4>
-                <ul>
+                <ol>
                     {% for emprego in curriculo._atuacao._empregosanteriores %}
                     <li> {{ emprego }} </li>
                     {% endfor %}
-                </ul>
+                </ol>
             {% endif %}
         </div>
     </div>
